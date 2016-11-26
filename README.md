@@ -1,5 +1,7 @@
 Using the `mysql-to-json` docker image you can look at the mysqlbinlog output in a pretty printed json format.
 
+This image is available form the docker hub https://hub.docker.com/r/labbati/mysql-to-json/.
+
 ## Examples
 
 Given a table:
