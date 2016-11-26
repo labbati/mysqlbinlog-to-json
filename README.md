@@ -1,6 +1,6 @@
 Using the `mysql-to-json` docker image you can look at the mysqlbinlog output in a pretty printed json format.
 
-## What it does
+## Examples
 
 Given a table:
 
