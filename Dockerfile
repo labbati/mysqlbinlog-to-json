@@ -11,6 +11,7 @@ ENV MYSQL_PORT=3306
 ENV MYSQL_USER=user
 ENV MYSQL_PASSWORD=password
 ENV FIX_BINLOG_FORMAT=false
+ENV MAXWELL_ARGS=
 
 WORKDIR /opt
 
@@ -24,4 +25,4 @@ WORKDIR /opt/maxwell-${MAXWELL_VERSION}
 # otherwise we just startup maxwell as is
 CMD [ "$FIX_BINLOG_FORMAT" = "true" ] && \
     mysql -u${MYSQL_USER} -h${MYSQL_HOST} -P${MYSQL_PORT} --password=${MYSQL_PASSWORD} -e "SET GLOBAL binlog_format = 'ROW';" ; \
-    bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=stdout | jq .
+    bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=stdout $MAXWELL_ARGS | jq .

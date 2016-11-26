@@ -2,6 +2,8 @@ Using the `mysqlbinlog-to-json` docker image you can look at the mysqlbinlog out
 
 This image is available form the docker hub https://hub.docker.com/r/labbati/mysqlbinlog-to-json/.
 
+Under the hood, it uses [Maxwell](http://maxwells-daemon.io) to attach to the mysqlbinlog and export json output.
+
 ## Examples
 
 Given a table:
@@ -85,7 +87,4 @@ Alternatively, you can add this image to any `docker-compose.yml` file and later
 * `MYSQL_USER`: The mysql user (default to `user`)
 * `MYSQL_PASSWORD`: The mysql host (default to `password`)
 * `FIX_BINLOG_FORMAT`: Whether or not the image should convert the mysql server log format to `ROW` (default to `false`). Maxwell requires `ROW` binlog format. *WARNING* do not pass the option `FIX_BINLOG_FORMAT=true` in production as it *WILL CHANGE* the server replication format.
-
-
-
-
+* `MAXWELL_ARGS`: Additional maxwell arguments that can be passed when invoking the tool from the command line (e.g. `MAXWELL_ARGS=--exclude_tables=people,addresses`), see [Maxwell's configuration page](http://maxwells-daemon.io/config/) for more details. (default to `''`). Note the the following arguments are reserved and setting them will result in an unpredictable behavior: `--user `, `--password`, `--host`, `--port` and `--producer`.
