@@ -1,6 +1,6 @@
-Using the `mysql-to-json` docker image you can look at the mysqlbinlog output in a pretty printed json format.
+Using the `mysqlbinlog-to-json` docker image you can look at the mysqlbinlog output in a pretty printed json format.
 
-This image is available form the docker hub https://hub.docker.com/r/labbati/mysql-to-json/.
+This image is available form the docker hub https://hub.docker.com/r/labbati/mysqlbinlog-to-json/.
 
 ## Examples
 
@@ -70,7 +70,7 @@ Executing the statement `DELETE FROM people WHERE id=1;` will result in the foll
 
 ## Getting Started
 
-You can connect `mysql-to-json` to a mysql instance running on the host (note the `--net="host"` command line argument to the docker run command):
+You can connect `mysqlbinlog-to-json` to a mysql instance running on the host (note the `--net="host"` command line argument to the docker run command):
 
 `docker run -ti -e "MYSQL_USER=username" -e "MYSQL_PASSWORD=password" --net="host" labbati/mysqlbinlog-to-json`.
 
