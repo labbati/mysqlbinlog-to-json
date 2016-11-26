@@ -1,7 +1,5 @@
 FROM openjdk:8
 
-WORKDIR /opt
-
 RUN apt-get update && \
     apt-get install -y jq && \
     apt-get install -y mysql-client
@@ -13,6 +11,8 @@ ENV MYSQL_PORT=3306
 ENV MYSQL_USER=user
 ENV MYSQL_PASSWORD=password
 ENV FIX_BINLOG_FORMAT=false
+
+WORKDIR /opt
 
 # Downloading and installing maxwell
 RUN curl -sLo - https://github.com/zendesk/maxwell/releases/download/v${MAXWELL_VERSION}/maxwell-${MAXWELL_VERSION}.tar.gz | tar zxvf -
