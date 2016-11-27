@@ -1,8 +1,10 @@
-FROM openjdk:8
+FROM openjdk:8-jre-alpine
 
-RUN apt-get update && \
-    apt-get install -y jq && \
-    apt-get install -y mysql-client
+RUN apk update && \
+    apk upgrade && \
+    apk add jq && \
+    apk add mysql-client && \
+    apk add curl
 
 # Setting default envs
 ENV MAXWELL_VERSION=1.5.1
@@ -21,8 +23,6 @@ RUN cd maxwell-${MAXWELL_VERSION}
 
 WORKDIR /opt/maxwell-${MAXWELL_VERSION}
 
-# If (and only if) the env FIX_BINLOG_FORMAT=true we also set binlogformat to ROW (required by maxwell)
-# otherwise we just startup maxwell as is
-CMD [ "$FIX_BINLOG_FORMAT" = "true" ] && \
-    mysql -u${MYSQL_USER} -h${MYSQL_HOST} -P${MYSQL_PORT} --password=${MYSQL_PASSWORD} -e "SET GLOBAL binlog_format = 'ROW';" ; \
-    bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=stdout $MAXWELL_ARGS | jq .
+COPY app_start.sh /opt/maxwell-${MAXWELL_VERSION}/app_start.sh
+
+CMD ["./app_start.sh"]
