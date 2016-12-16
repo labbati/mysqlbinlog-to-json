@@ -1,5 +1,15 @@
 #!/bin/sh
 
+# If the corresponding option is set, then we wait for the mysql server to be up and running
+if [ "$WAIT_FOR_SERVER_UP" = "true" ]; then
+    echo "Waiting for mysql server to be up and running"
+    while ! mysqladmin ping -h"$MYSQL_HOST" --silent; do
+        echo "."
+        sleep 1
+    done
+    echo "Mysql server is up and running, can proceed"
+fi
+
 # If (and only if) the env FIX_BINLOG_FORMAT=true we also set binlogformat to ROW (required by maxwell)
 # otherwise we just startup maxwell as is
 if [ "$FIX_BINLOG_FORMAT" = "true" ]; then
@@ -7,4 +17,4 @@ if [ "$FIX_BINLOG_FORMAT" = "true" ]; then
     echo "Changed the mysqlbinlog format to 'ROW' on the server"
 fi
 
-/bin/sh bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=stdout $MAXWELL_ARGS | jq .
+/bin/sh bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=stdout $MAXWELL_ARGS | jq --unbuffered '.'

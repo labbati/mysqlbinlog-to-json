@@ -72,13 +72,13 @@ Executing the statement `DELETE FROM people WHERE id=1;` will result in the foll
 
 ## Getting Started
 
-You can connect `mysqlbinlog-to-json` to a mysql instance running on the host (note the `--net="host"` command line argument to the docker run command):
+You can connect `mysqlbinlog-to-json` to any mysql instance (for example, here I add the `--net="host"` command line argument to the docker run command in order to connect it to a mysql server running on the host):
 
 `docker run -ti -e "MYSQL_USER=username" -e "MYSQL_PASSWORD=password" --net="host" labbati/mysqlbinlog-to-json`.
 
-Alternatively, you can add this image to any `docker-compose.yml` file and later on attach to its stdout:
+Alternatively, you can add this image to any `docker-compose.yml` file and later on attach to its logs:
 
-`docker attach <container_name_here>`.
+`docker logs <container_name_here> -f --tail 0`.
 
 ## Configuration
 
