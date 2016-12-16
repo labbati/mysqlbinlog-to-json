@@ -17,4 +17,8 @@ if [ "$FIX_BINLOG_FORMAT" = "true" ]; then
     echo "Changed the mysqlbinlog format to 'ROW' on the server"
 fi
 
-/bin/sh bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=stdout $MAXWELL_ARGS | jq --unbuffered '.'
+# A user may want or not to disable colors in the output json, as they may make the output not readable (e.g. from vi)
+# if dumped to a text file.
+[[ $JSON_COLORS = "true" ]] && color_option="-C" || color_option="-M"
+
+/bin/sh bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=stdout $MAXWELL_ARGS | jq $color_option --unbuffered '.'
