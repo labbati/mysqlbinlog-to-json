@@ -10,9 +10,9 @@ Given a table:
 
 ```
 CREATE TABLE people (
-	id integer primary key,
-	name varchar(32),
-	age integer
+  id integer primary key,
+  name varchar(32),
+  age integer
 )
 ```
 
