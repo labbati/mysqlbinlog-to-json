@@ -88,4 +88,27 @@ Alternatively, you can add this image to any `docker-compose.yml` file and later
 * `MYSQL_PASSWORD`: The mysql host (default to `password`)
 * `FIX_BINLOG_FORMAT`: Whether or not the image should convert the mysql server log format to `ROW` (default to `false`). Maxwell requires `ROW` binlog format. *WARNING* do not pass the option `FIX_BINLOG_FORMAT=true` in production as it *WILL CHANGE* the server replication format.
 * `MAXWELL_ARGS`: Additional maxwell arguments that can be passed when invoking the tool from the command line (e.g. `MAXWELL_ARGS=--exclude_tables=people,addresses`), see [Maxwell's configuration page](http://maxwells-daemon.io/config/) for more details. (default to `''`). Note the the following arguments are reserved and setting them will result in an unpredictable behavior: `--user `, `--password`, `--host`, `--port` and `--producer`.
-* `JSON_COLORS`: Whether or not the the outputted json should use the jq color scheme or not (default to `true`). Tip: use `false` if you are dumping the stdout into a text file, e.g. `docker .... > some-text-file.txt` as otherwise plain text color codes would make the file very hard to read.
+* `JSON_COLORS`: Whether or not the outputted json should use the jq color scheme or not (default to `true`). Tip: use `false` if you are dumping the stdout into a text file, e.g. `docker .... > some-text-file.txt` as otherwise plain text color codes would make the file very hard to read.
+
+## License
+MIT License
+
+Copyright (c) 2016 Luca Abbati
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
