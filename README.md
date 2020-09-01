@@ -16,7 +16,7 @@ CREATE TABLE people (
 )
 ```
 
-Executing the statement `INSERT INTO people VALUES (1, "Luca Abbati", 36);` will result in the following output
+Executing the statement `INSERT INTO people VALUES (1, "Luca Abbati", 40);` will result in the following output
 ```
 {
   "database": "my_database_name",
@@ -28,12 +28,12 @@ Executing the statement `INSERT INTO people VALUES (1, "Luca Abbati", 36);` will
   "data": {
     "id": 1,
     "name": "Luca Abbati",
-    "age": 36
+    "age": 40
   }
 }
 ```
 
-Executing the statement `UPDATE people SET age=37 WHERE id=1;` will result in the following output
+Executing the statement `UPDATE people SET age=41 WHERE id=1;` will result in the following output
 ```
 {
   "database": "my_database_name",
@@ -45,10 +45,10 @@ Executing the statement `UPDATE people SET age=37 WHERE id=1;` will result in th
   "data": {
     "id": 1,
     "name": "Luca Abbati",
-    "age": 37
+    "age": 41
   },
   "old": {
-    "age": 36
+    "age": 40
   }
 }
 ```
@@ -65,7 +65,7 @@ Executing the statement `DELETE FROM people WHERE id=1;` will result in the foll
   "data": {
     "id": 1,
     "name": "Luca Abbati",
-    "age": 37
+    "age": 41
   }
 }
 ```
@@ -93,7 +93,7 @@ Alternatively, you can add this image to any `docker-compose.yml` file and later
 ## License
 MIT License
 
-Copyright (c) 2016 Luca Abbati
+Copyright (c) 2020 Luca Abbati
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
