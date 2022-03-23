@@ -1,1 +1,4 @@
+# File to list users with permissions to send message through https://osnotify.com on behalf of this repository.
+# Use the format 'Name LastName <email@domain.com>'. Multiple entries on multiple lines.
+
 Luca Abbati <luca.abbati@gmail.com>
